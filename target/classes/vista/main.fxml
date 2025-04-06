@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.compuwork.controlador.MainController"
+      style="-fx-background-color: #f5f6fa;" spacing="20">
+    
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Sistema de Gestión de Empleados" 
+           style="-fx-font-size: 24; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+    <HBox spacing="20">
+        <!-- Panel izquierdo - Formulario -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 20; 
+              -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);"
+              prefWidth="400">
+            
+            <TitledPane text="Datos Personales" expanded="true"
+                       style="-fx-font-size: 14; -fx-font-weight: bold;">
+                <VBox spacing="10">
+                    <GridPane hgap="15" vgap="10">
+                        <Label text="Nombre:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                        <TextField fx:id="txtNombre" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                                 style="-fx-font-size: 14; -fx-background-radius: 5;"/>
+                        
+                        <Label text="Apellido:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                        <TextField fx:id="txtApellido" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                                 style="-fx-font-size: 14; -fx-background-radius: 5;"/>
+                        
+                        <Label text="CC:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                        <TextField fx:id="txtCc" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                                 style="-fx-font-size: 14; -fx-background-radius: 5;"/>
+                    </GridPane>
+                </VBox>
+            </TitledPane>
+
+            <TitledPane text="Datos Laborales" expanded="true"
+                       style="-fx-font-size: 14; -fx-font-weight: bold;">
+                <VBox spacing="10">
+                    <GridPane hgap="15" vgap="10">
+                        <Label text="Departamento:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                        <ComboBox fx:id="comboDepartamentos" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                                style="-fx-font-size: 14; -fx-background-radius: 5;" maxWidth="Infinity"/>
+                        
+                        <Label text="Fecha Contratación:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                        <DatePicker fx:id="fechaContratacion" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                                  style="-fx-font-size: 14;" maxWidth="Infinity"/>
+                        
+                        <Label text="Salario Base:" GridPane.columnIndex="0" GridPane.rowIndex="2"
+                               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                        <TextField fx:id="txtSalarioBase" GridPane.columnIndex="1" GridPane.rowIndex="2"
+                                 style="-fx-font-size: 14; -fx-background-radius: 5;"/>
+                    </GridPane>
+                </VBox>
+            </TitledPane>
+
+            <TitledPane text="Tipo de Empleado" expanded="true"
+                       style="-fx-font-size: 14; -fx-font-weight: bold;">
+                <VBox spacing="10">
+                    <HBox spacing="20">
+                        <RadioButton fx:id="rbPermanente" text="Permanente" selected="true"
+                                   style="-fx-font-size: 14; -fx-text-fill: #34495e;">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="tipoEmpleado"/>
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="rbTemporal" text="Temporal" toggleGroup="$tipoEmpleado"
+                                   style="-fx-font-size: 14; -fx-text-fill: #34495e;"/>
+                    </HBox>
+
+                    <GridPane fx:id="gridPermanente" hgap="15" vgap="10">
+                        <Label text="Bonificación Antigüedad:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                        <TextField fx:id="txtBonificacionAntiguedad" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                                 style="-fx-font-size: 14; -fx-background-radius: 5;"/>
+                    </GridPane>
+
+                    <GridPane fx:id="gridTemporal" hgap="15" vgap="10" visible="false">
+                        <Label text="Fecha Fin Contrato:" GridPane.columnIndex="0" GridPane.rowIndex="0"
+                               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                        <DatePicker fx:id="fechaFinContrato" GridPane.columnIndex="1" GridPane.rowIndex="0"
+                                  style="-fx-font-size: 14;" maxWidth="Infinity"/>
+                        
+                        <Label text="Bonificación Proyecto:" GridPane.columnIndex="0" GridPane.rowIndex="1"
+                               style="-fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                        <TextField fx:id="txtBonificacionProyecto" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                                 style="-fx-font-size: 14; -fx-background-radius: 5;"/>
+                    </GridPane>
+                </VBox>
+            </TitledPane>
+
+            <Button text="Agregar Empleado" onAction="#agregarEmpleado"
+                    style="-fx-font-size: 14; -fx-font-weight: bold; -fx-background-color: #2ecc71; 
+                           -fx-text-fill: white; -fx-padding: 10 20; -fx-background-radius: 5;
+                           -fx-cursor: hand;" maxWidth="Infinity"/>
+        </VBox>
+
+        <!-- Panel derecho - Lista y Reporte -->
+        <VBox spacing="15" style="-fx-background-color: white; -fx-padding: 20; 
+              -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);"
+              HBox.hgrow="ALWAYS">
+            
+            <Label text="Lista de Empleados" 
+                   style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            
+            <ListView fx:id="listaEmpleados" VBox.vgrow="ALWAYS"
+                      style="-fx-background-radius: 5; -fx-font-size: 14;"/>
+            
+            <HBox spacing="10">
+                <Button text="Generar Reporte Individual" onAction="#generarReporteEmpleado"
+                        style="-fx-font-size: 14; -fx-font-weight: bold; -fx-background-color: #3498db;
+                               -fx-text-fill: white; -fx-padding: 10 20; -fx-background-radius: 5;
+                               -fx-cursor: hand;" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                
+                <Button text="Generar Reporte Departamento" onAction="#generarReporteDepartamento"
+                        style="-fx-font-size: 14; -fx-font-weight: bold; -fx-background-color: #9b59b6;
+                               -fx-text-fill: white; -fx-padding: 10 20; -fx-background-radius: 5;
+                               -fx-cursor: hand;" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+            </HBox>
+            
+            <TextArea fx:id="areaReporte" prefRowCount="10" wrapText="true"
+                      style="-fx-font-family: 'Consolas'; -fx-font-size: 14; -fx-background-radius: 5;"/>
+        </VBox>
+    </HBox>
+</VBox>

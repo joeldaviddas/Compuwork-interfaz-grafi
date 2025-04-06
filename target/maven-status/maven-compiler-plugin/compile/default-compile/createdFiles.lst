@@ -1,0 +1,6 @@
+com\compuwork\modelo\Empleado.class
+com\compuwork\modelo\EmpleadoTemporal.class
+com\compuwork\modelo\Departamento.class
+com\compuwork\Main.class
+com\compuwork\modelo\EmpleadoPermanente.class
+com\compuwork\controlador\MainController.class
